@@ -137,7 +137,10 @@ namespace _12306
                 //}
                 string vstring = Common.Common.GetPointsStr(_pointList);
                 bool b = KyfwUtils.CheckVerifyCode(vstring);
-
+                if (b)
+                {
+                    MessageBox.Show("验证成功！");
+                }
 
             }
             private void pictureBox1_Click(object sender, MouseEventArgs e)

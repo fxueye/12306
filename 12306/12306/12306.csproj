@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Src\Common\Common.cs" />
     <Compile Include="Src\Common\Utils\KyfwUtils.cs" />
+    <Compile Include="Src\Entity\CheckVerifyResult.cs" />
     <Compile Include="Src\Ui\login.cs">
       <SubType>Form</SubType>
     </Compile>

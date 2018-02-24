@@ -23,8 +23,12 @@ namespace _12306.Common
             data.Add("answer",verifyCode);
             data.Add("login_site","E");
             data.Add("rand","sjrand");
-            string v = HttpUtils.GetResponse(API.UserCheckVerify, "POST", Common.GetUrlString(data), API.UserLoginInit);
-
+            string result = HttpUtils.GetResponse(API.UserCheckVerify, "POST", Common.GetUrlString(data), API.UserLoginInit);
+            CheckVerifyResult cvr = JsonUtils.DeserializeToObj<CheckVerifyResult>(result);
+            if (cvr.result_code == "4")
+            {
+                return true;
+            }
             return false;
         }
     }

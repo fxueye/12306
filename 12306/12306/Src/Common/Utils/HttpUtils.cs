@@ -14,6 +14,10 @@ namespace _12306.Common
         public static CookieContainer CookieContainers = new CookieContainer();
         public static string FireFoxAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.23) Gecko/20110920 Firefox/3.6.23";
         public static string IE7 = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; InfoPath.2; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET4.0C; .NET4.0E)";
+        public static string EDGE = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393";
+
+        public static string Accept = "application/json, text/javascript, */*; q=0.01";
+        public static string ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
         /// <summary>
         /// 
         /// </summary>
@@ -30,9 +34,9 @@ namespace _12306.Common
                 req.Method = method.ToUpper();
                 req.AllowAutoRedirect = true;
                 req.CookieContainer = CookieContainers;
-                req.ContentType = "application/x-www-form-urlencoded";
-                req.UserAgent = IE7;
-                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                req.ContentType = ContentType;
+                req.UserAgent = EDGE;
+                req.Accept = Accept;
                 req.Timeout = 50000;
                 if (method.ToUpper() == "POST" && data != null)
                 {
@@ -68,9 +72,9 @@ namespace _12306.Common
                 req.Method = method.ToUpper();
                 req.AllowAutoRedirect = true;
                 req.CookieContainer = CookieContainers;
-                req.ContentType = "application/x-www-form-urlencoded";
-                req.UserAgent = IE7;
-                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                req.ContentType = ContentType;
+                req.UserAgent = EDGE;
+                req.Accept = Accept;
                 req.Timeout = 50000;
                 req.Referer = refer;
                 if (method.ToUpper() == "POST" && data != null)
@@ -108,9 +112,9 @@ namespace _12306.Common
                 req.Method = "GET";
                 req.AllowAutoRedirect = true;
                 req.CookieContainer = CookieContainers;
-                req.ContentType = "application/x-www-form-urlencoded";
-                req.UserAgent = IE7;
-                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                req.ContentType = ContentType;
+                req.UserAgent = EDGE;
+                req.Accept = Accept;
                 req.Timeout = 50000;
                 System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) =>
                 {
