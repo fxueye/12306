@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 namespace _12306
 {
-    class PicPoint
+    public class PicPoint
     {
         /// <summary>
         /// 点X坐标

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 
-namespace _12306
+namespace _12306.Common
 {
     public class JsonUtils
     {

@@ -86,7 +86,7 @@
             // 
             // btnLoginStop
             // 
-            this.btnLoginStop.Location = new System.Drawing.Point(280, 309);
+            this.btnLoginStop.Location = new System.Drawing.Point(280, 298);
             this.btnLoginStop.Name = "btnLoginStop";
             this.btnLoginStop.Size = new System.Drawing.Size(85, 23);
             this.btnLoginStop.TabIndex = 10;

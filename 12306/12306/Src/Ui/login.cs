@@ -46,11 +46,7 @@ namespace _12306
             private void GetLoginCode()
             {
                 SetLoginResult("获取验证码中");
-                string url = "https://kyfw.12306.cn/passport/captcha/captcha-image?login_site=E&module=login&rand=sjrand&%{0}";
-                Stream stream = null;
-                Random r = new Random();
-                Double rd = r.NextDouble();
-                stream = HttpUtils.GetResponseImage(string.Format(url, rd));
+                Stream stream = KyfwUtils.GetImageStream();
                 Image image = Image.FromStream(stream);
                 this.pictureBox1.Image = image;
                 SetLoginResult("验证码获取成功");
@@ -132,13 +128,17 @@ namespace _12306
             }
             private void btnLoginStop_Click(object sender, EventArgs e)
             {
-                try
-                {
-                    threadLogin.Abort();
-                }
-                catch
-                {
-                }
+                //try
+                //{
+                //    threadLogin.Abort();
+                //}
+                //catch
+                //{
+                //}
+                string vstring = Common.Common.GetPointsStr(_pointList);
+                bool b = KyfwUtils.CheckVerifyCode(vstring);
+
+
             }
             private void pictureBox1_Click(object sender, MouseEventArgs e)
             {
