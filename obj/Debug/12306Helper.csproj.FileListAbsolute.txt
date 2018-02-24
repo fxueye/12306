@@ -48,3 +48,12 @@ C:\work\12306-master\bin\Debug\log4net.xml
 C:\work\12306\bin\Debug\12306Helper.exe.config
 C:\work\12306\obj\Debug\12306Helper.exe
 C:\work\12306\obj\Debug\12306Helper.pdb
+C:\work\12306\bin\Debug\12306Helper.exe
+C:\work\12306\bin\Debug\12306Helper.pdb
+C:\work\12306\bin\Debug\log4net.dll
+C:\work\12306\bin\Debug\log4net.xml
+C:\work\12306\obj\Debug\12306Helper.csprojResolveAssemblyReference.cache
+C:\work\12306\obj\Debug\_12306Helper.login.resources
+C:\work\12306\obj\Debug\_12306Helper.main.resources
+C:\work\12306\obj\Debug\_12306Helper.Properties.Resources.resources
+C:\work\12306\obj\Debug\12306Helper.csproj.GenerateResource.Cache
