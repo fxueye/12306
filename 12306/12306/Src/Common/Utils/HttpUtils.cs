@@ -7,9 +7,9 @@ using System.IO;
 using System.Web;
 using System.Text.RegularExpressions;
 
-namespace _12306.Helper
+namespace _12306.Common
 {
-    public class HttpHelper
+    public class HttpUtils
     {
        public static CookieContainer CookieContainers = new CookieContainer();
        public static string FireFoxAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.23) Gecko/20110920 Firefox/3.6.23";

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace _12306.Helper
+namespace _12306.Common
 {
     public class API
     {

@@ -52,29 +52,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="login.cs">
+    <Compile Include="Src\Ui\login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="login.Designer.cs">
+    <Compile Include="Src\Ui\login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="main.cs">
+    <Compile Include="Src\Ui\main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="main.Designer.cs">
+    <Compile Include="Src\Ui\main.Designer.cs">
       <DependentUpon>main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Src\Common\Common.cs" />
-    <Compile Include="Src\Core\API.cs" />
-    <Compile Include="Src\Core\GridButton.cs" />
-    <Compile Include="Src\Core\HttpHelper.cs" />
-    <Compile Include="Src\Core\JsonHelper.cs" />
+    <Compile Include="Src\Common\API.cs" />
+    <Compile Include="Src\Ui\GridButton.cs" />
+    <Compile Include="Src\Common\Utils\HttpUtils.cs" />
+    <Compile Include="Src\Common\Utils\JsonUtils.cs" />
     <Compile Include="Src\Entity\PicPoint.cs" />
     <Compile Include="Src\Entity\Checi.cs" />
     <Compile Include="Src\Entity\Passenger.cs" />
-    <EmbeddedResource Include="login.resx">
+    <EmbeddedResource Include="Src\Ui\login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -107,6 +106,7 @@
   <ItemGroup>
     <Content Include="Resources\city.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
