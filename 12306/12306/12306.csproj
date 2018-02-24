@@ -52,9 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Src\Common\Common.cs" />
+    <Compile Include="Src\Common\Tools.cs" />
     <Compile Include="Src\Common\Utils\KyfwUtils.cs" />
+    <Compile Include="Src\Entity\CheckIsLogin.cs" />
     <Compile Include="Src\Entity\CheckVerifyResult.cs" />
+    <Compile Include="Src\Entity\LoginResult.cs" />
     <Compile Include="Src\Ui\login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +91,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Src\Ui\main.resx">
+      <DependentUpon>main.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

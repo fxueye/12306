@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 
-namespace _12306.Common
+namespace _12306.Common.Utils
 {
     public class JsonUtils
     {
+
         public static T DeserializeToObj<T>(string jsonString)
         {
             JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();

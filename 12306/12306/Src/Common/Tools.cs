@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace _12306.Common
 {
-    public class Common
+    public class Tools
     {
         public static string GetPointsStr(List<PicPoint> points)
         {

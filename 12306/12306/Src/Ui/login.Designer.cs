@@ -55,9 +55,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Location = new System.Drawing.Point(7, 9);
+            this.groupBox1.Location = new System.Drawing.Point(9, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(424, 357);
+            this.groupBox1.Size = new System.Drawing.Size(422, 357);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "用户登录";
@@ -65,7 +65,7 @@
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(241, 50);
+            this.linkLabel3.Location = new System.Drawing.Point(243, 49);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(53, 12);
             this.linkLabel3.TabIndex = 13;
@@ -90,7 +90,7 @@
             this.btnLoginStop.Name = "btnLoginStop";
             this.btnLoginStop.Size = new System.Drawing.Size(85, 23);
             this.btnLoginStop.TabIndex = 10;
-            this.btnLoginStop.Text = "停止登陆(&S)";
+            this.btnLoginStop.Text = "停止登录(&S)";
             this.btnLoginStop.UseVisualStyleBackColor = true;
             this.btnLoginStop.Click += new System.EventHandler(this.btnLoginStop_Click);
             // 

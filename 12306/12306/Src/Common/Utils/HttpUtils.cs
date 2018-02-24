@@ -7,7 +7,7 @@ using System.IO;
 using System.Web;
 using System.Text.RegularExpressions;
 
-namespace _12306.Common
+namespace _12306.Common.Utils
 {
     public class HttpUtils
     {

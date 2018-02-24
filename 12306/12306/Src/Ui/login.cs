@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _12306.Common;
+using _12306.Common.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,22 +11,22 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using _12306.Common;
 namespace _12306
 {
         public partial class login : Form
         {
-            private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            private static log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             private List<PicPoint> _pointList = new List<PicPoint>();
+            private LoginResult _loginResult = new LoginResult();
             public login()
             {
                 InitializeComponent();
             }
-            private void Form1_Activated(object sender, EventArgs e)
-            {
-            }
+            public LoginResult LoginResult { get { return _loginResult; } }
+
             Thread threadLogin;
             public string name;
+
             private void btnLogin_Click(object sender, EventArgs e)
             {
                 // Verify login field
@@ -46,6 +48,7 @@ namespace _12306
             private void GetLoginCode()
             {
                 SetLoginResult("获取验证码中");
+                _pointList.Clear();
                 Stream stream = KyfwUtils.GetImageStream();
                 Image image = Image.FromStream(stream);
                 this.pictureBox1.Image = image;
@@ -57,56 +60,37 @@ namespace _12306
                 SetLoginResult("正在登陆中");
                 string userName = this.txtUserName.Text.Trim();
                 string password = this.txtPassword.Text.Trim();
-                string loginUrl = "https://dynamic.12306.cn/otsweb/loginAction.do?method=login";
-                for (int i = 0; i < 10000; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     try
                     {
-                        // Get random number
-                        string randomUrl = "https://dynamic.12306.cn/otsweb/loginAction.do?method=loginAysnSuggest";
-                        string afterRandom = HttpUtils.GetResponse(randomUrl, "POST", string.Empty);
-                        string[] randoms = afterRandom.Split('"');
-                        string random = randoms[3];
-                        string data = "loginRand=" + random + "&loginUser.user_name=" + userName + "&nameErrorFocus=&user.password=" + password + "&passwordErrorFocus=&randCode=" + "&randErrorFocus=";
-                        string afterLogin = HttpUtils.GetResponse(loginUrl, "POST", data);
-                        if (afterLogin.Contains("密码输入错误"))
+                        if (_pointList.Count == 0)
                         {
-                            SetLoginResult("密码输入错误，请重新输入密码");
-                            break;
+                            MessageBox.Show("请先选择验证图片！");
+                            return;
                         }
-                        else if (afterLogin.Contains("欢迎您"))
+                        string vstring = Tools.GetPointsStr(_pointList);
+                        bool b = KyfwUtils.CheckVerifyCode(vstring);
+                        if (b)
                         {
-                            SetLoginResult("登陆成功");
-                            //doc.LoadHtml(afterLogin);
-                            string xpath = "/html/body/div/div/div[1]/div[2]/div[1]";
-                            //name = doc.DocumentNode.SelectSingleNode(xpath).InnerText.Replace("\r\n", "").Replace("\t", "");
-                            this.DialogResult = DialogResult.OK;
-                            break;
-                        }
-                        else if (afterLogin.Contains("请输入正确的验证码"))
-                        {
-                            SetLoginResult("登陆失败，请输入正确的验证码");
-                            break;
-                        }
-                        else if (afterLogin.Contains("您的用户已经被锁定"))
-                        {
-                            SetLoginResult("您的用户已经被锁定,请稍候再试");
-                            break;
-                        }
-                        else if (afterLogin.Contains("当前访问用户过多，请稍后重试"))
-                        {
-                            SetLoginResult("当前访问用户过多，请稍后重试，进行第" + i.ToString() + "次重试");
+                            _loginResult = KyfwUtils.DoLogin(userName, password);
+                            if (LoginResult.result_code == 0)
+                            {
+                                this.DialogResult = DialogResult.OK;
+                            }
+                            SetLoginResult(LoginResult.result_message);
                         }
                         else
                         {
-                            SetLoginResult("登录失败，进行第" + i.ToString() + "次重试");
+                            MessageBox.Show("验证失败！");
+                            GetLoginCodeThread();
                         }
                     }
                     catch { }
                 }
             }
             private delegate void WriteLabelDelegate(object entry);
-            private delegate void WriteYZMDelegate(object yzm);
+
             private void WriteLoginResult(object text)
             {
                 this.toolStripStatusLabel1.Text = text.ToString();
@@ -135,24 +119,12 @@ namespace _12306
                 //catch
                 //{
                 //}
-                string vstring = Common.Common.GetPointsStr(_pointList);
-                bool b = KyfwUtils.CheckVerifyCode(vstring);
-                if (b)
-                {
-                    MessageBox.Show("验证成功！");
-                }
+
 
             }
             private void pictureBox1_Click(object sender, MouseEventArgs e)
             {
-                //GetLoginCodeThread();
-                Console.WriteLine(string.Format("X:{0}Y:{1}", e.X, e.Y));
-                log.Info(string.Format("mouse event X:{0} Y:{1}", e.X, e.Y));
                 _pointList.Add(new PicPoint() { X = e.X, Y = e.Y });
-
-            }
-            private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-            {
 
             }
 

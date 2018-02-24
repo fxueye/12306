@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _12306.Common
+namespace _12306.Common.Utils
 {
     public class KyfwUtils
     {
+        private static log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public static Stream GetImageStream()
         {
             Stream stream = null;
@@ -23,13 +24,32 @@ namespace _12306.Common
             data.Add("answer",verifyCode);
             data.Add("login_site","E");
             data.Add("rand","sjrand");
-            string result = HttpUtils.GetResponse(API.UserCheckVerify, "POST", Common.GetUrlString(data), API.UserLoginInit);
+            string result = HttpUtils.GetResponse(API.UserCheckVerify, "POST", Tools.GetUrlString(data), API.UserLoginInit);
             CheckVerifyResult cvr = JsonUtils.DeserializeToObj<CheckVerifyResult>(result);
             if (cvr.result_code == "4")
             {
                 return true;
             }
             return false;
+        }
+        public static LoginResult DoLogin(string username, string password)
+        {
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data.Add("username", username);
+            data.Add("password", password);
+            data.Add("appid", "otn");
+            string result = HttpUtils.GetResponse(API.UserLogin12306, "POST", Tools.GetUrlString(data), API.UserLoginInit);
+            _log.InfoFormat("DoLogin result:{0}", result);
+            LoginResult lr = JsonUtils.DeserializeToObj<LoginResult>(result);
+            return lr;
+        }
+        public static string CheckIsLogin()
+        {
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data.Add("appid", "otn");
+            string result = HttpUtils.GetResponse(API.UserAuthUAMTK, "POST", Tools.GetUrlString(data), API.UserLoginInit);
+            _log.InfoFormat("CheckIsLogin result:{0}",result);
+            return "";
         }
     }
 }

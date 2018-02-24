@@ -1,4 +1,5 @@
 ﻿using _12306.Common;
+using _12306.Common.Utils;
 using _12306.Properties;
 using System;
 using System.Collections;
@@ -562,7 +563,7 @@ namespace _12306
             string imgEnd = "<img src='/otsweb/images/tips/last.gif'>";
             string txtStart = "[始]";
             string txtEnd = "[终]";
-            string content = Common.HttpUtils.GetResponse(url, "get", "");
+            string content = HttpUtils.GetResponse(url, "get", "");
             content = content.Replace(imgStart, txtStart).Replace(imgEnd, txtEnd);
             content = content.Replace("<a name='btn130_2' class='btn130_2' style='text-decoration:none;' onclick=javascript:", "").Replace("</a>", "");
             
