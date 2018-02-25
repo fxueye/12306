@@ -54,9 +54,10 @@
   <ItemGroup>
     <Compile Include="Src\Common\Tools.cs" />
     <Compile Include="Src\Common\Utils\KyfwUtils.cs" />
-    <Compile Include="Src\Entity\CheckIsLogin.cs" />
+    <Compile Include="Src\Entity\CheckIsLoginResult.cs" />
     <Compile Include="Src\Entity\CheckVerifyResult.cs" />
     <Compile Include="Src\Entity\LoginResult.cs" />
+    <Compile Include="Src\Entity\UserToken.cs" />
     <Compile Include="Src\Ui\login.cs">
       <SubType>Form</SubType>
     </Compile>

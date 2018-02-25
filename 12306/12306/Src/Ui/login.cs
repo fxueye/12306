@@ -18,12 +18,14 @@ namespace _12306
             private static log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             private List<PicPoint> _pointList = new List<PicPoint>();
             private LoginResult _loginResult = new LoginResult();
+            private CheckIsLoginResult _checkIsLoginResult = new CheckIsLoginResult();
+            private UserToken _userToken = new UserToken();
             public login()
             {
                 InitializeComponent();
             }
             public LoginResult LoginResult { get { return _loginResult; } }
-
+            public CheckIsLoginResult CheckIsLoginResult { get { return _checkIsLoginResult; } }
             Thread threadLogin;
             public string name;
 
@@ -57,7 +59,7 @@ namespace _12306
             }
             private void Login()
             {
-                SetLoginResult("正在登陆中");
+                
                 string userName = this.txtUserName.Text.Trim();
                 string password = this.txtPassword.Text.Trim();
                 for (int i = 0; i < 1; i++)
@@ -70,15 +72,43 @@ namespace _12306
                             return;
                         }
                         string vstring = Tools.GetPointsStr(_pointList);
+                        SetLoginResult("验证中");
                         bool b = KyfwUtils.CheckVerifyCode(vstring);
                         if (b)
                         {
+                            SetLoginResult("验证成功！");
+                            SetLoginResult("正在登陆中");
                             _loginResult = KyfwUtils.DoLogin(userName, password);
                             if (LoginResult.result_code == 0)
                             {
-                                this.DialogResult = DialogResult.OK;
+                                SetLoginResult("验证登录中");
+                                _checkIsLoginResult = KyfwUtils.CheckIsLogin();
+                                if (_checkIsLoginResult.result_code == 0)
+                                {
+                                    SetLoginResult("获取用户信息！");
+                                   _userToken = KyfwUtils.Get1206Token(_checkIsLoginResult.newapptk);
+                                   if (_userToken.result_code == 0)
+                                   {
+                                       SetLoginResult("获取用户信息成功！");
+                                       SetLoginResult("登录成功！");
+                                       this.DialogResult = DialogResult.OK;
+                                   }
+                                   else
+                                   {
+                                       SetLoginResult("获取用户信息失败！");
+                                       MessageBox.Show(_userToken.result_message);
+                                   }
+                                }
+                                else
+                                {
+                                    SetLoginResult("验证登录状态失败！");
+                                    MessageBox.Show(_checkIsLoginResult.result_message);
+                                }
+                         
+
                             }
                             SetLoginResult(LoginResult.result_message);
+                            
                         }
                         else
                         {

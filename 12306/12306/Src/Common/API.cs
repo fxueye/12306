@@ -45,5 +45,7 @@ namespace _12306.Common
         public static string QuerySchedule = "https://kyfw.12306.cn/otn/%s?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=ADULT";
         //查询乘客信息
         public static string QueryPassenger = "https://kyfw.12306.cn/otn/confirmPassenger/getPassengerDTOs";
+        //登录页面
+        public static string UserLoginPage = "https://kyfw.12306.cn/otn/passport?redirect=/otn/login/userLogin";
     }
 }

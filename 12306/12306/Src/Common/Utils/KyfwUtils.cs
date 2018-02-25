@@ -43,13 +43,22 @@ namespace _12306.Common.Utils
             LoginResult lr = JsonUtils.DeserializeToObj<LoginResult>(result);
             return lr;
         }
-        public static string CheckIsLogin()
+        public static CheckIsLoginResult CheckIsLogin()
         {
             Dictionary<string, string> data = new Dictionary<string, string>();
             data.Add("appid", "otn");
             string result = HttpUtils.GetResponse(API.UserAuthUAMTK, "POST", Tools.GetUrlString(data), API.UserLoginInit);
             _log.InfoFormat("CheckIsLogin result:{0}",result);
-            return "";
+            CheckIsLoginResult cil = JsonUtils.DeserializeToObj<CheckIsLoginResult>(result);
+            return cil;
+        }
+        public static UserToken Get1206Token(string appTk){
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data.Add("tk", appTk);
+            string result = HttpUtils.GetResponse(API.UserGetToken, "POST", Tools.GetUrlString(data), API.UserLoginPage);
+            _log.InfoFormat("Get1206Token result:{0}",result);
+            UserToken ut = JsonUtils.DeserializeToObj<UserToken>(result);
+            return ut;
         }
     }
 }
